@@ -10,12 +10,14 @@ class CartOrder {
 
     public CartOrder(Food food){
         this.food = food;
-        this.foodPrice = food.getFoodPrice();
         this.foodQuantity = 1;
     }
 
+    public CartOrder(Food food, int foodQuantity) {
+        this.food = food;
+    }
+
     private Food food;
-    private double foodPrice;
     private int foodQuantity;
 
 }
