@@ -11,7 +11,6 @@ import java.util.Map;
  */
 public interface IFoodService {
 
-
     /**
      * This method is used to retrieve Food details with foodId == id. The id will probably be passed as a
      * GET request through an endpoint or through URL routes directly for the front end of the website.
