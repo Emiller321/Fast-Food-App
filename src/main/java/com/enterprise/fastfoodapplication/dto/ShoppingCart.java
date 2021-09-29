@@ -16,10 +16,10 @@ public class ShoppingCart {
         orders = new HashMap<String, CartOrder>();
     }
 
-    public double totalEstimatedCost() {
+    public double totalEstimatedCostOfEntireCart() {
         double estimatedTotal = 0;
         for (CartOrder order : orders.values()) {
-            estimatedTotal += order.getFood().getFoodPrice();
+            estimatedTotal += order.getFood().getFoodPrice()*order.getFoodQuantity();
         }
         return estimatedTotal;
     }
