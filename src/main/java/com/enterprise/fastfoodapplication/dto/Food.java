@@ -11,8 +11,6 @@ class Food {
     private String foodCategory;
     private String foodDescription;
     private double foodPrice;
-    private String foodServing;
-    private String foodDetails;
     private MultipartFile foodImage;
 
 }
