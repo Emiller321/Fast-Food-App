@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public @Data
 class Food {
+
     private String foodId;
     private String foodName;
     private String foodCategory;
@@ -13,4 +14,5 @@ class Food {
     private String foodServing;
     private String foodDetails;
     private MultipartFile foodImage;
+
 }
