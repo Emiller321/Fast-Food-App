@@ -20,4 +20,9 @@ class CartOrder {
     private Food food;
     private int foodQuantity;
 
+    public double totalEstimatedCostOfFoodItem () {
+        double estimatedTotal = food.getFoodPrice() * foodQuantity;
+        return estimatedTotal;
+    }
+
 }
