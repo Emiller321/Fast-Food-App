@@ -1,10 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Make an Order！</title>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            position: relative;
+        }
+    </style>
 </head>
-<body id="bodyStart">
-This is just a placeholder index page.
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-expand-sm  bg-light navbar-light fixed-top">
+    <a class="navbar-brand" href="#">
+        <img src="../static/images/homePageIcon.png" alt="Logo" style="width:40px;">
+    </a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#section1">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#section2">Catagory</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#section3">Shoppingcart</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#section4">Recent Orders</a>
+        </li>
+    </ul>
+</nav>
+
+<div id="section1"  class="container-fluid bg-start" style="padding-top:70px;padding-bottom:70px">
+    <h1>Home</h1>
+    <p> this div is for page1 home</p>
+</div>
+<div id="section2" class="container-fluid bg-warning" style="padding-top:70px;padding-bottom:70px">
+    <h1>Category</h1>
+    <p> this div is for page2 category</p>
+</div>
+<div id="section3" class="container-fluid bg-start" style="padding-top:70px;padding-bottom:70px">
+    <h1>Shopping cart</h1>
+    <ul class="list-group">
+        <li class="list-group-item d-flex  justify-content-between align-items-center">
+            <img src="../static/images/burgersCategories.jpg"  style="width:400px;">
+            Burger
+            <span class="badge badge-primary badge-pill">12</span>
+            <div>
+                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </li>
+        <li class="list-group-item d-flex  justify-content-between align-items-center">
+            <img src="../static/images/pizzaCategories.jpg"  style="width:400px;">
+            Pizza
+            <span class="badge badge-primary badge-pill">50</span>
+            <div>
+                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-danger">Delete</button></div>
+        </li>
+        <li class="list-group-item d-flex   justify-content-between align-items-center">
+            <img src="../static/images/chipCategories.jpg"  style="width:400px;">
+            Sandwich
+            <span class="badge badge-primary badge-pill">99</span>
+            <div>
+                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </li>
+    </ul>
+    <button type="button" class="btn btn-outline-primary btn-block">Check out</button>
+</div>
+<div id="section4" class="container-fluid bg-start " style="padding-top:70px;padding-bottom:70px">
+    <h1>Recent Orders</h1>
+    <div class="jumbotron">
+        <p>There is no orders so far.</p>
+    </div>
+
+</div>
+
+
 </body>
 </html>
