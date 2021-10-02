@@ -3,16 +3,22 @@ package com.enterprise.fastfoodapplication;
 import com.enterprise.fastfoodapplication.dto.CartOrder;
 import com.enterprise.fastfoodapplication.dto.Food;
 import com.enterprise.fastfoodapplication.dto.OrderHistory;
+import com.enterprise.fastfoodapplication.service.IFoodService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 public class FastFoodController {
+
+    @Autowired
+    IFoodService foodService;
+
     @RequestMapping("/")
     public String index(Model model) {
         /**
@@ -26,6 +32,7 @@ public class FastFoodController {
         model.addAttribute(orderHistory);
         return "start";
     }
+
     /**
      * This is for search bar on the navigation bar.
      * This happens when the user click "search".
@@ -36,5 +43,38 @@ public class FastFoodController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-
+    /**
+     *This is for fetch, post and delete.
+     *
+     * */
+    @GetMapping("/Food")
+    public Map<String, Food> fetchAllFood(){
+        return foodService.getAllFoodItems();
+    }
+    @GetMapping("/Food/id/")
+    public Food fetchFoodbyId(@PathVariable("id") String id){
+        return foodService.getFoodItemById(id);
+    }
+    @PostMapping(value="/Food", consumes ="application/json", produces = "application/json")
+    public Food createFood(@RequestBody Food food){
+        Food newFood = null;
+        try {
+            foodService.createFoodItem(food);
+        } catch (Exception e){
+            //TODO add logging
+        }
+        return food;
+    }
+    @PostMapping(value="/Food/id/", consumes ="application/json", produces = "application/json")
+    public Food updateFood(@PathVariable("id") String id){
+        Food newFood =null;
+        newFood = foodService.getFoodItemById(id);
+        foodService.updateFoodItem(id);
+        return newFood;
+    }
+    @DeleteMapping("/Food/id/")
+    public String deleteFood(@PathVariable("id") String id){
+        foodService.removeFoodItem(id);
+        return "redirect";
+    }
 }
