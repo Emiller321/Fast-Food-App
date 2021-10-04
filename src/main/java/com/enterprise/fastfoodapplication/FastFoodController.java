@@ -1,6 +1,5 @@
 package com.enterprise.fastfoodapplication;
 
-import com.enterprise.fastfoodapplication.dto.CartOrder;
 import com.enterprise.fastfoodapplication.dto.Food;
 import com.enterprise.fastfoodapplication.dto.OrderHistory;
 import com.enterprise.fastfoodapplication.service.IFoodService;
@@ -12,9 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 public class FastFoodController {
+
+    private static Logger logger = Logger.getLogger("com.enterprise.fastfoodapplication.FastFoodController");
 
     @Autowired
     IFoodService foodService;
@@ -61,7 +64,7 @@ public class FastFoodController {
         try {
             foodService.createFoodItem(food);
         } catch (Exception e){
-            //TODO add logging
+            logger.log(Level.WARNING, "Failed to create food item");
         }
         return food;
     }
