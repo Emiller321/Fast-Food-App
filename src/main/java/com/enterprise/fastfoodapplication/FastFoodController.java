@@ -14,21 +14,31 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The controller for Fast Food Application food items REST endpoints and web UI
+ * <p>
+ * This class handles the CRUD operations for Fast Food Application food items, via HTTP actions.
+ * </p>
+ * <p>
+ * This class also serves HTML based web pages, for UI interactions with Food Items.
+ * </p>
+ * @author Bipal Goyal
+ */
 @Controller
 public class FastFoodController {
 
-    private static Logger logger = Logger.getLogger("com.enterprise.fastfoodapplication.FastFoodController");
+    private static final Logger logger = Logger.getLogger("com.enterprise.fastfoodapplication.FastFoodController");
 
     @Autowired
     IFoodService foodService;
 
     @RequestMapping("/")
     public String index(Model model) {
-        /**
-         * Need an orderHistory class to store the name and number of Items a customer ordered.
-         * This happens when the user click "check out".
-         * The "check out" button act like a "save" button to store the information of order in OrderHistory class.
-         * */
+        /*
+          Need an orderHistory class to store the name and number of Items a customer ordered.
+          This happens when the user click "check out".
+          The "check out" button act like a "save" button to store the information of order in OrderHistory class.
+          */
         OrderHistory orderHistory= new OrderHistory();
         orderHistory.setFoodAmount(2);
         orderHistory.setFoodName("burger");
@@ -51,13 +61,36 @@ public class FastFoodController {
      *
      * */
     @GetMapping("/Food")
-    public Map<String, Food> fetchAllFood(){
-        return foodService.getAllFoodItems();
+    public ResponseEntity fetchAllFood(){
+        return new ResponseEntity(HttpStatus.OK);
     }
-    @GetMapping("/Food/id/")
-    public Food fetchFoodbyId(@PathVariable("id") String id){
-        return foodService.getFoodItemById(id);
+
+    /**
+     * Fetch a food with the given ID.
+     *
+     * Given the parameter id, find a specimen that corresponds to this unique ID.
+     *
+     * Returns one of the following status codes:
+     * 200: food found
+     * 400: food not found
+     *
+     * @param id a unique identifier for this food
+     */
+    @GetMapping("/Food/{id}/")
+    public ResponseEntity fetchFoodById(@PathVariable("id") String id){
+        return new ResponseEntity(HttpStatus.OK);
     }
+
+    /**
+     * Create a new Food object, given the data provided.
+     *
+     * returns one of the following status codes:
+     * 201: successfully created a new food.
+     * 409: unable to create a food, because it already exists.
+     *
+     * @param food a JSON representation of a food object.
+     * @return the newly created food object.
+     */
     @PostMapping(value="/Food", consumes ="application/json", produces = "application/json")
     public Food createFood(@RequestBody Food food){
         Food newFood = null;
@@ -68,16 +101,15 @@ public class FastFoodController {
         }
         return food;
     }
-    @PostMapping(value="/Food/id/", consumes ="application/json", produces = "application/json")
+    @PostMapping(value="/Food/{id}/", consumes ="application/json", produces = "application/json")
     public Food updateFood(@PathVariable("id") String id){
-        Food newFood =null;
+        Food newFood = new Food();
         newFood = foodService.getFoodItemById(id);
         foodService.updateFoodItem(id);
         return newFood;
     }
-    @DeleteMapping("/Food/id/")
-    public String deleteFood(@PathVariable("id") String id){
-        foodService.removeFoodItem(id);
-        return "redirect";
+    @DeleteMapping("/Food/{id}/")
+    public ResponseEntity deleteFood(@PathVariable("id") String id){
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
