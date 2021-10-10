@@ -9,6 +9,32 @@ Our team has decided to create a Fast-Food Management Application. This is an ap
 ## Functional Requirements
 
 ### Scenario
+As an admin, I want to be able to modify the food items sold in the restaurant.
+
+### Example
+**Given**: A feed of food data are available
+**When**: The user/service puts Food Name as "Chicken Burger"
+**When**: The user/service adds Food Category as "Snacks" to a Chicken Burger
+**When**: The user/service adds Food Price as "12.99" to a Chicken Burger
+**Then**: The user’s/service’s Chicken Burger will be saved with Snacks as Category as 12.99 as Price.
+
+###Example
+**Given**: Food data are available
+**When**: The user/service searches for “kajsd;luaopuidfjo;aj;sd”
+**Then**: Fast Food Application will not return any results.
+
+###Example
+**Given**: Food data are available, and specimen 9 is Italian Pizza.
+**When**: The user/service searches for the food with ID “9”.
+**Then**: Fast Food Application will return exactly one specimen record for "Italian Pizza".
+
+###Example
+**Given**: Food data are available
+**When**: The user/service posts a new Food object with valid attributes, "foodName="Coke", foodCategory="Drinks", food
+Description="Sample Description", foodPrice="Price".
+**Then**: FastFoodApplication will create a new food for this record, and will return this new food object.
+
+## Scenario
 As a customer, I want to see all the food items available along with additional information such as category, nutritional information, price, etc. so that I can use it to place my required items into my shopping cart. 
 
 ### Example
